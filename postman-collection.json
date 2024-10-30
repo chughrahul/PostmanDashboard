@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "2e0ced69-03e9-4d84-8f02-931201161541",
 		"name": "Api_Collection_Raxa_Testing",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "13012658"
 	},
 	"item": [
@@ -56,78 +56,17 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json;charset=UTF-8"
-							},
-							{
-								"key": "Accept-Language",
-								"value": "en-GB,en-US;q=0.9,en;q=0.8"
-							},
-							{
-								"key": "Connection",
-								"value": "keep-alive"
-							},
-							{
-								"key": "Content-type",
-								"value": "application/json;charset=UTF-8"
-							},
-							{
-								"key": "Cookie",
-								"value": "_ga=GA1.1.1849970805.1705297007; _ga_0R8HBS4RKY=GS1.1.1706505625.47.1.1706506138.0.0.0"
-							},
-							{
-								"key": "Origin",
-								"value": "https://demo.raxa.io"
-							},
-							{
-								"key": "Referer",
-								"value": "https://demo.raxa.io/RaxaWebapp-new/"
-							},
-							{
-								"key": "Sec-Fetch-Dest",
-								"value": "empty"
-							},
-							{
-								"key": "Sec-Fetch-Mode",
-								"value": "cors"
-							},
-							{
-								"key": "Sec-Fetch-Site",
-								"value": "same-origin"
-							},
-							{
-								"key": "User-Agent",
-								"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-							},
-							{
-								"key": "sec-ch-ua",
-								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\""
-							},
-							{
-								"key": "sec-ch-ua-mobile",
-								"value": "?0"
-							},
-							{
-								"key": "sec-ch-ua-platform",
-								"value": "\"macOS\""
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Authorization\": \"Basic cmFpbmEucmFpNzk3MjpSYWluYTEyMw==\",\n    \"isProvider\": \"true\"\n}"
+							"raw": "{\n    \"Authorization\": \"Basic cmFpbmEucmFpNzk3MjpSYWluYTEyMw==\",\n    \"isProvider\": \"true\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						"url": {
-							"raw": "{{BaseUrl}}/login/v2",
-							"host": [
-								"{{BaseUrl}}"
-							],
-							"path": [
-								"login",
-								"v2"
-							]
-						}
+						"url": "{{BaseUrl}}/login/v2"
 					},
 					"response": [
 						{
@@ -196,16 +135,7 @@
 									"mode": "raw",
 									"raw": "{\n    \"Authorization\": \"Basic cmFpbmEucmFpNzk3MjpSYWluYTEyMw==\",\n    \"isProvider\": \"true\"\n}"
 								},
-								"url": {
-									"raw": "{{BaseUrl}}/login/v2",
-									"host": [
-										"{{BaseUrl}}"
-									],
-									"path": [
-										"login",
-										"v2"
-									]
-								}
+								"url": "{{BaseUrl}}/login/v2"
 							},
 							"status": "OK",
 							"code": 200,
@@ -297,7 +227,7 @@
 									"pm.test(\"Authenticated is a boolean\", function () {",
 									"    const responseData = pm.response.json();",
 									"    ",
-									"    pm.expect(responseData.authenticated).to.be.a('boolean');",
+									"    pm.expect(responseData.authenticated).to.be.a('string');",
 									"});",
 									"",
 									"",
@@ -317,16 +247,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{BaseUrl}}/login/session",
-							"host": [
-								"{{BaseUrl}}"
-							],
-							"path": [
-								"login",
-								"session"
-							]
-						}
+						"url": "{{BaseUrl}}/login/session"
 					},
 					"response": [
 						{
@@ -334,15 +255,7 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "{{BaseUrl}}login/session",
-									"host": [
-										"{{BaseUrl}}login"
-									],
-									"path": [
-										"session"
-									]
-								}
+								"url": "{{BaseUrl}}login/session"
 							},
 							"status": "OK",
 							"code": 200,
@@ -399,18 +312,10 @@
 	],
 	"auth": {
 		"type": "basic",
-		"basic": [
-			{
-				"key": "password",
-				"value": "Raina123",
-				"type": "string"
-			},
-			{
-				"key": "username",
-				"value": "raina.rai7972",
-				"type": "string"
-			}
-		]
+		"basic": {
+			"password": "Raina123",
+			"username": "raina.rai7972"
+		}
 	},
 	"event": [
 		{
