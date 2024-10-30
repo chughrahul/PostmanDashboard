@@ -32,8 +32,7 @@ jobs:
       - name: Run Postman Collection
         run: newman run ./postman-collection.json \
             --reporters cli,json \
-            --reporter-json-export ./newman-report.json \
-            --verbose
+            --reporter-json-export ./newman-report.json
     
       - name: List files after running Postman Collection
         run: ls -la
