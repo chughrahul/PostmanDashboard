@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "2e0ced69-03e9-4d84-8f02-931201161541",
 		"name": "Api_Collection_Raxa_Testing",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "13012658"
 	},
 	"item": [
@@ -118,7 +118,16 @@
 							"mode": "raw",
 							"raw": "{\n    \"Authorization\": \"Basic cmFpbmEucmFpNzk3MjpSYWluYTEyMw==\",\n    \"isProvider\": \"true\"\n}"
 						},
-						"url": "{{BaseUrl}}/login/v2"
+						"url": {
+							"raw": "{{BaseUrl}}/login/v2",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"login",
+								"v2"
+							]
+						}
 					},
 					"response": [
 						{
@@ -187,7 +196,16 @@
 									"mode": "raw",
 									"raw": "{\n    \"Authorization\": \"Basic cmFpbmEucmFpNzk3MjpSYWluYTEyMw==\",\n    \"isProvider\": \"true\"\n}"
 								},
-								"url": "{{BaseUrl}}/login/v2"
+								"url": {
+									"raw": "{{BaseUrl}}/login/v2",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"login",
+										"v2"
+									]
+								}
 							},
 							"status": "OK",
 							"code": 200,
@@ -299,7 +317,16 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{BaseUrl}}login/session"
+						"url": {
+							"raw": "{{BaseUrl}}/login/session",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"login",
+								"session"
+							]
+						}
 					},
 					"response": [
 						{
@@ -307,7 +334,15 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"url": "{{BaseUrl}}login/session"
+								"url": {
+									"raw": "{{BaseUrl}}login/session",
+									"host": [
+										"{{BaseUrl}}login"
+									],
+									"path": [
+										"session"
+									]
+								}
 							},
 							"status": "OK",
 							"code": 200,
@@ -364,10 +399,18 @@
 	],
 	"auth": {
 		"type": "basic",
-		"basic": {
-			"password": "Raina123",
-			"username": "raina.rai7972"
-		}
+		"basic": [
+			{
+				"key": "password",
+				"value": "Raina123",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "raina.rai7972",
+				"type": "string"
+			}
+		]
 	},
 	"event": [
 		{
