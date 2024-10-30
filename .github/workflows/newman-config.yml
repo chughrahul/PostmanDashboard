@@ -41,7 +41,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           
           # Create a background SSH tunnel
-          ssh -o StrictHostKeyChecking=no -f -N -L 3307:your-rds-endpoint:3306 root@backend2.raxa.io
+          ssh -o StrictHostKeyChecking=no -f -N -L 3307:backend2.raxa.io:3306 root@backend2.raxa.io
 
       - name: Save Results to MySQL
         run: |
