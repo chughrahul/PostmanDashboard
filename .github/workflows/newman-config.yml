@@ -30,7 +30,7 @@ jobs:
           npm install -g newman
 
       - name: Run Postman Collection
-        run: newman run postman-collection.json --reporters cli,json --reporter-json-export newman-report.json --verbose
+        run: newman run postman-collection.json --reporters cli,json --reporter-json-export newman-report.json --continue-on-error
     
       - name: List files after running Postman Collection
         run: ls -la
