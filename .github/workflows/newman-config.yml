@@ -44,7 +44,7 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           
-          ssh -o StrictHostKeyChecking=no -f -N -L 3307:backend2.raxa.io:3306 centos@backend2.raxa.io
+          ssh -o StrictHostKeyChecking=no -f -N -L 3306:backend2.raxa.io:3306 centos@backend2.raxa.io
 
       - name: Save Results to MySQL
         run: |
@@ -52,7 +52,7 @@ jobs:
           npm run save-results
         env:
           DB_HOST: '127.0.0.1'
-          DB_PORT: 3307
+          DB_PORT: 3306
           DB_USER: root
           DB_PASSWORD: RaxaHealth@007
           DB_NAME: api_testing
