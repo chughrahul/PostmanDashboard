@@ -48,5 +48,24 @@ const saveResults = () => {
     connection.end();
 };
 
+// Read the report file
+fs.readFile(reportPath, 'utf8', (err, data) => {
+    if (err) {
+        console.error('Error reading the report file:', err);
+        process.exit(1);
+    }
+
+    console.log('Report file content:', data); // Log the content
+
+    // Parse the JSON data
+    try {
+        const report = JSON.parse(data);
+        // Continue processing the report...
+    } catch (parseError) {
+        console.error('Error parsing JSON:', parseError);
+        process.exit(1);
+    }
+});
+
 // Run the save function
 saveResults();
