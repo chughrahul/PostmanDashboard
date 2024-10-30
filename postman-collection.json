@@ -362,6 +362,13 @@
 			]
 		}
 	],
+	"auth": {
+		"type": "basic",
+		"basic": {
+			"password": "Raina123",
+			"username": "raina.rai7972"
+		}
+	},
 	"event": [
 		{
 			"listen": "prerequest",
