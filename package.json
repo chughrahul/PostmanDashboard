@@ -1,0 +1,12 @@
+{
+    "name": "newman-db-integration",
+    "version": "1.0.0",
+    "main": "saveResults.js",
+    "scripts": {
+      "save-results": "node saveResults.js"
+    },
+    "dependencies": {
+      "mysql2": "^2.3.3"
+    }
+  }
+  

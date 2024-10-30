@@ -1,0 +1,49 @@
+name: Run Postman Collection with Newman
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  run-newman:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npm install -g newman
+
+      - name: Run Postman Collection
+        run: newman run postman-collection.json \
+             --reporters cli,json \
+             --reporter-json-export newman-report.json
+
+      - name: Set up SSH Tunnel
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          
+          # Create a background SSH tunnel
+          ssh -o StrictHostKeyChecking=no -f -N -L 3307:your-rds-endpoint:3306 root@backend2.raxa.io
+
+      - name: Save Results to MySQL
+        run: |
+          npm install
+          npm run save-results
+        env:
+          DB_HOST: '127.0.0.1'
+          DB_PORT: 3306
+          DB_USER: root
+          DB_PASSWORD: RaxaHealth@007
+          DB_NAME: api_testing
