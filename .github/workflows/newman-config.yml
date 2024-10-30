@@ -52,7 +52,7 @@ jobs:
           npm run save-results
         env:
           DB_HOST: '127.0.0.1'
-          DB_PORT: 3306
+          DB_PORT: 3307
           DB_USER: root
           DB_PASSWORD: RaxaHealth@007
           DB_NAME: api_testing
