@@ -22,30 +22,51 @@ connection.connect(err => {
 });
 
 // Function to insert test results into the database
-const saveResults = () => {
+const saveResults = async () => {
     const executions = report.run.executions;
 
-    executions.forEach(exec => {
+    // Loop through each execution
+    for (const exec of executions) {
         const endpoint = exec.item.name;
         const status_code = exec.response.code;
         const response_time = exec.response.responseTime;
         const test_status = exec.assertions.every(a => a.error === undefined) ? 'PASSED' : 'FAILED';
 
-        const query = `
-      INSERT INTO api_test_results (endpoint, status_code, response_time, test_status)
-      VALUES (?, ?, ?, ?)
-    `;
+        const resultQuery = `
+          INSERT INTO api_test_results (endpoint, status_code, response_time, test_status)
+          VALUES (?, ?, ?, ?)
+        `;
 
-        connection.query(query, [endpoint, status_code, response_time, test_status], (error, results) => {
-            if (error) {
-                console.error('Error inserting data:', error);
-            } else {
-                console.log(`Result for ${endpoint} saved with status: ${test_status}`);
-            }
-        });
-    });
+        try {
+            // Insert main result into api_test_results and get the inserted ID
+            const [result] = await connection.promise().query(resultQuery, [endpoint, status_code, response_time, test_status]);
+            const resultId = result.insertId;
 
-    connection.end();
+            // Prepare insert queries for each assertion as an array of promises
+            const assertionPromises = exec.assertions.map(assertion => {
+                const test_name = assertion.assertion;
+                const assertion_status = assertion.error === undefined ? 'PASSED' : 'FAILED';
+                const error_message = assertion.error ? assertion.error.message : null;
+
+                const assertionQuery = `
+                  INSERT INTO api_test_assertions (result_id, test_name, test_status, error)
+                  VALUES (?, ?, ?, ?)
+                `;
+
+                // Return a promise for each assertion insert
+                return connection.promise().query(assertionQuery, [resultId, test_name, assertion_status, error_message]);
+            });
+
+            // Wait for all assertion insertions to complete
+            await Promise.all(assertionPromises);
+
+            console.log(`Result for ${endpoint} saved with status: ${test_status}, and all assertions recorded.`);
+        } catch (error) {
+            console.error('Error inserting data:', error);
+        }
+    }
+
+    connection.end(); // Close the connection only after all queries are complete
 };
 
 // Read the report file
