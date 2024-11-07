@@ -1,15 +1,15 @@
 name: Run Postman Collection with Newman
 
-on:
-  schedule:
-    - cron: '0 */2 * * *'  # Runs every two hours
-  workflow_dispatch:  # Allows manual triggering of the workflow
-
 # on:
-#   push:
-#     branches:
-#     - main  # Specify the branch you want to monitor for pushes
+#   schedule:
+#     - cron: '0 */2 * * *'  # Runs every two hours
 #   workflow_dispatch:  # Allows manual triggering of the workflow
+
+on:
+  push:
+    branches:
+    - main  # Specify the branch you want to monitor for pushes
+  workflow_dispatch:  # Allows manual triggering of the workflow
 
 jobs:
   run-newman:
